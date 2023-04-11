@@ -1,5 +1,7 @@
 package com.example.lab1.mybatis.model;
 
+import java.util.List;
+
 public class Author {
     /**
      *
@@ -131,5 +133,15 @@ public class Author {
      */
     public void setName(String name) {
         this.name = name;
+    }
+
+    private List<Book> books;
+
+    public List<Book> getBooks() {
+        return books;
+    }
+
+    public void setBooks(List<Book> books) {
+        this.books = books;
     }
 }

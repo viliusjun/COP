@@ -7,7 +7,17 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <h:head/>
 <h:body>
-    <h:link outcome="/authors" value="Start MyBatis program"/>
+   <h2>Books:</h2>
+   <ol>
+      <ui:repeat value="#{booksMyBatis.author.books}" var="book">
+         <li>#{book.name}</li>
+      </ui:repeat>
+   </ol>
+   <h:form>
+      <ol>
+         <li>Title: <h:inputText value="#{booksMyBatis.bookToCreate.title}" required="true" /></li>
+      </ol>
+      <h:commandButton value="Add new book" action="#{booksMyBatis.createBook}" />
+   </h:form>
 </h:body>
 </html>
-

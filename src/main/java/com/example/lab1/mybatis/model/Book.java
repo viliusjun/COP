@@ -1,5 +1,7 @@
 package com.example.lab1.mybatis.model;
 
+import java.util.List;
+
 public class Book {
     /**
      *
@@ -98,5 +100,25 @@ public class Book {
      */
     public void setAuthorId(Long authorId) {
         this.authorId = authorId;
+    }
+
+    private Author author;
+
+    public Author getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(Author author) {
+        this.author = author;
+    }
+
+    private List<Genre> genres;
+
+    public List<Genre> getGenres() {
+        return genres;
+    }
+
+    public void setGenres(List<Genre> genres) {
+        this.genres = genres;
     }
 }

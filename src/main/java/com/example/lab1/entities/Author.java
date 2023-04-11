@@ -6,6 +6,9 @@ import java.util.List;
 import lombok.EqualsAndHashCode;
 
 @Entity
+@NamedQueries({
+        @NamedQuery(name = "Author.findAll", query = "select a from Author as a")
+})
 @Table(name = "AUTHOR")
 @EqualsAndHashCode
 public class Author {

@@ -1,5 +1,6 @@
 package com.example.lab1.mybatis.dao;
 
+import com.example.lab1.mybatis.model.Book;
 import com.example.lab1.mybatis.model.Genre;
 import org.mybatis.cdi.Mapper;
 
@@ -46,4 +47,6 @@ public interface GenreMapper {
      * @mbg.generated Tue Apr 11 20:50:40 EEST 2023
      */
     int updateByPrimaryKey(Genre row);
+
+    List<Book> selectBooksForGenre(Long id);
 }

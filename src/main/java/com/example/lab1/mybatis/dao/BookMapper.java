@@ -1,6 +1,8 @@
 package com.example.lab1.mybatis.dao;
 
+import com.example.lab1.mybatis.model.Author;
 import com.example.lab1.mybatis.model.Book;
+import com.example.lab1.mybatis.model.Genre;
 import org.mybatis.cdi.Mapper;
 
 import java.util.List;
@@ -46,4 +48,8 @@ public interface BookMapper {
      * @mbg.generated Tue Apr 11 20:50:40 EEST 2023
      */
     int updateByPrimaryKey(Book row);
+
+    Author selectAuthor(Long id);
+
+    List<Genre> selectGenresForBook(Long id);
 }

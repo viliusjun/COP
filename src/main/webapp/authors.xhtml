@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head/>
+<h:body>
+   <h2>Authors:</h2>
+   <ol>
+      <ui:repeat value="#{authorsMyBatis.allAuthors}" var="author">
+         <li><h:link value="#{author.name}" outcome="/books?authorId=#{author.id}" /></li>
+      </ui:repeat>
+   </ol>
+   <h:form>
+      <ol>
+         <li>Id: <h:inputText value="#{authorsMyBatis.authorToCreate.id}" required="true" /></li>
+         <li>Name: <h:inputText value="#{authorsMyBatis.authorToCreate.name}" required="true" /></li>
+         <li>Lastname: <h:inputText value="#{authorsMyBatis.authorToCreate.lastName}" required="true" /></li>
+         <li>Email: <h:inputText value="#{authorsMyBatis.authorToCreate.email}" required="false" /></li>
+      </ol>
+      <h:commandButton value="Add new author" action="#{authorsMyBatis.createAuthor}" />
+   </h:form>
+</h:body>
+</html>
