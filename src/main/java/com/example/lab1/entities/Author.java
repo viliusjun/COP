@@ -1,14 +1,12 @@
 package com.example.lab1.entities;
 
-import javax.persistence.Basic;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.List;
 
 import lombok.EqualsAndHashCode;
 
 @Entity
+@Table(name = "AUTHOR")
 @EqualsAndHashCode
 public class Author {
     @Id
@@ -34,6 +32,7 @@ public class Author {
     }
 
     @Basic(optional = false)
+    @Column(name = "LAST_NAME")
     private String lastname;
 
     public String getLastname() {
