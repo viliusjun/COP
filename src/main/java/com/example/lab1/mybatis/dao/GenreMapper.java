@@ -5,6 +5,7 @@ import com.example.lab1.mybatis.model.Genre;
 import org.mybatis.cdi.Mapper;
 
 import java.util.List;
+import java.util.Map;
 
 @Mapper
 public interface GenreMapper {
@@ -49,4 +50,8 @@ public interface GenreMapper {
     int updateByPrimaryKey(Genre row);
 
     List<Book> selectBooksForGenre(Long id);
+
+    int insertBookGenre(Map<String, Long> params);
+
+    Genre selectByName(String name);
 }

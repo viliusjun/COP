@@ -11,10 +11,11 @@
     <ol>
         <ui:repeat value="#{booksForAuthor.author.books}" var="book">
             <li>
-                #{book.title}
+                <h:link value="#{book.title}" outcome="/genres?bookId=#{book.id}" />
             </li>
         </ui:repeat>
     </ol>
+
     <h:form>
         <h:inputText a:placeholder="title" value="#{booksForAuthor.bookToCreate.title}" required="true" />
         <h:commandButton value="Add book to author"
@@ -23,6 +24,8 @@
             <f:param name="authorId" value="#{booksForAuthor.author.id}" />
         </h:commandButton>
     </h:form>
+
+    <br/>
     <h:link outcome="authors" value="Back to authors page"/>
 </h:body>
 </html>

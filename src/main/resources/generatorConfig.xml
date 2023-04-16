@@ -25,5 +25,10 @@
         <table schema="public" tableName="genre">
             <generatedKey column="id" identity="true" sqlStatement="JDBC" />
         </table>
+        <table>
+            <table schema="public" tableName="book_genre">
+                <generatedKey column="id" identity="true" sqlStatement="JDBC" />
+            </table>
+        </table>
     </context>
 </generatorConfiguration>

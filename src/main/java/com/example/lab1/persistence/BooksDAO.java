@@ -16,7 +16,7 @@ public class BooksDAO {
         this.em.persist(book);
     }
 
-    public Book findOne(Integer id){
+    public Book findOne(Long id){
         return em.find(Book.class, id);
     }
 

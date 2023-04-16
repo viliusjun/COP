@@ -15,7 +15,7 @@
     <!-- Nested result (no N+1 select problem) -->
     <association property="author"
                  columnPrefix="author_"
-                 resultMap="com.example.lab1.mybatis.dao.UniversityMapper.BaseResultMap"/>
+                 resultMap="com.example.lab1.mybatis.dao.AuthorMapper.BaseResultMap"/>
 
     <!-- Manually added for ManyToMany -->
     <!-- Nested select (N+1 select problem) -->

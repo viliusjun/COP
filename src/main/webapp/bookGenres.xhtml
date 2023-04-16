@@ -5,9 +5,15 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
-<h:head/>
-<h:body>
-    <h:link outcome="/authors" value="Start Program"/>
-</h:body>
-</html>
+<body>
+<h2>All genres of #{booksForGenresMyBatis.currentOpenedBook.title} book:</h2>
+<ol>
+   <ui:repeat value="#{booksForGenresMyBatis.bookGenres}" var="genre">
+      <li>#{genre.name}</li>
+   </ui:repeat>
+</ol>
 
+<br/>
+<h:link outcome="authors" value="Back to authors page"/>
+</body>
+</html>

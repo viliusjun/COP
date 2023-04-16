@@ -22,5 +22,36 @@
       </ol>
       <h:commandButton value="Add new author" action="#{authorsMyBatis.createAuthor}" />
    </h:form>
+
+   <br/>
+
+<!--   Genres   -->
+   <div style="display:inline-block; width: auto">
+      <h2>All genres:</h2>
+      <ol>
+         <ui:repeat value="#{genresMyBatis.allGenres}" var="genre">
+            <li><h:link value="#{genre.name}" outcome="/genreBooks?genreId=#{genre.id}" /></li>
+         </ui:repeat>
+      </ol>
+   </div>
+
+   <h:form>
+      <ol>
+         <li>Name: <h:inputText value="#{genresMyBatis.genreToCreate.name}" required="true" /></li>
+      </ol>
+      <h:commandButton value="Add new genre" action="#{genresMyBatis.createGenre}" />
+   </h:form>
+
+   <br/>
+
+<!--   Books     -->
+   <div style="display:inline-block; width: auto">
+      <h2>All books:</h2>
+      <ol>
+         <ui:repeat value="#{booksMyBatis.allBooks}" var="book">
+            <li><h:link value="#{book.title}" outcome="/bookGenres?bookId=#{book.id}" /></li>
+         </ui:repeat>
+      </ol>
+   </div>
 </h:body>
 </html>

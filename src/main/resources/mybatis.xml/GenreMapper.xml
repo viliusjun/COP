@@ -64,6 +64,12 @@
     from PUBLIC.GENRE
   </select>
 
+  <select id="selectByName" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select ID, NAME
+    from PUBLIC.GENRE
+    where NAME = #{name,jdbcType=VARCHAR}
+  </select>
+
   <!-- Manually added for ManyToMany -->
   <select id="selectBooksForGenre" resultType="Book">
     SELECT b.id, b.title
@@ -71,4 +77,9 @@
            JOIN public.book_genre bg on b.id = bg.books_id
     WHERE bg.genres_id = #{id,jdbcType=INTEGER}
   </select>
+
+  <insert id="insertBookGenre" parameterType="java.util.Map">
+    insert into PUBLIC.BOOK_GENRE (books_id, genres_id)
+    values (#{books_id,jdbcType=BIGINT}, #{genres_id,jdbcType=BIGINT})
+  </insert>
 </mapper>
