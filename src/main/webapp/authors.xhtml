@@ -30,7 +30,12 @@
       <h2>All genres:</h2>
       <ol>
          <ui:repeat value="#{genresMyBatis.allGenres}" var="genre">
-            <li><h:link value="#{genre.name}" outcome="/genreBooks?genreId=#{genre.id}" /></li>
+            <h:panelGroup rendered="#{genre.size != 0}">
+               <li><h:link value="#{genre.name}" outcome="/genreBooks?genreId=#{genre.id}" /></li>
+            </h:panelGroup>
+            <h:panelGroup rendered="#{genre.size == 0}">
+               <li style="font-style: italic;"><h:link value="#{genre.name}" outcome="/genreBooks?genreId=#{genre.id}" /></li>
+            </h:panelGroup>
          </ui:repeat>
       </ol>
    </div>

@@ -39,4 +39,8 @@ public class Genre {
     public void setBooks(List<Book> books) {
         this.books = books;
     }
+
+    private Integer size;
+
+    public Integer getSize(){return books.size(); }
 }

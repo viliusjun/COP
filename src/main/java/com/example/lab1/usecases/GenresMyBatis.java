@@ -19,6 +19,8 @@ public class GenresMyBatis {
     @Getter
     private List<Genre> allGenres;
 
+    @Getter List<Genre> genreWithoutBook;
+
     @Getter @Setter
     private Genre genreToCreate = new Genre();
 
