@@ -7,7 +7,14 @@
       xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
       xmlns:f="http://java.sun.com/jsf/core">
 <h:body>
-    <h2>Books written by #{booksForAuthor.author.name}:</h2>
+    <h3>Information about #{booksForAuthor.author.name}:</h3>
+    <p><b>name</b>: #{booksForAuthor.author.name}</p>
+    <p><b>lastname</b>: #{booksForAuthor.author.lastname}</p>
+    <p><b>email</b>: #{booksForAuthor.author.email}</p>
+    <h:button value="Edit author's email" outcome="/authorEdit?authorId=#{booksForAuthor.author.id}" >
+    </h:button>
+
+    <h3>Books written by #{booksForAuthor.author.name}:</h3>
     <ol>
         <ui:repeat value="#{booksForAuthor.author.books}" var="book">
             <li>

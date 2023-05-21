@@ -29,4 +29,8 @@ public class AuthorsDAO {
     public Author findOne(Long id) {
         return em.find(Author.class, id);
     }
+
+    public Author update(Author author){
+        return em.merge(author);
+    }
 }

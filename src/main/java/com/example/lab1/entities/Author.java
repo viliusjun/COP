@@ -12,6 +12,7 @@ import lombok.EqualsAndHashCode;
 @Table(name = "AUTHOR")
 @EqualsAndHashCode
 public class Author {
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     private Long id;
 
@@ -66,5 +67,17 @@ public class Author {
 
     public void setBooks(List<Book> books) {
         this.books = books;
+    }
+
+    @Version
+    @Column(name = "OPT_LOCK_VERSION")
+    private Integer version;
+
+    public Integer getVersion() {
+        return version;
+    }
+
+    public void setVersion(Integer version) {
+        this.version = version;
     }
 }
