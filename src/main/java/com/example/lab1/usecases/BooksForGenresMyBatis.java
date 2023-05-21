@@ -2,29 +2,41 @@ package com.example.lab1.usecases;
 
 import com.example.lab1.mybatis.dao.BookMapper;
 import com.example.lab1.mybatis.dao.GenreMapper;
-import com.example.lab1.mybatis.model.Author;
 import com.example.lab1.mybatis.model.Book;
 import com.example.lab1.mybatis.model.Genre;
+import com.example.lab1.services.GenreGenerator;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.annotation.PostConstruct;
+import javax.enterprise.context.SessionScoped;
 import javax.enterprise.inject.Model;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
+import javax.inject.Named;
 import javax.transaction.Transactional;
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
 
 @Model
-public class BooksForGenresMyBatis {
+@SessionScoped
+@Named
+public class BooksForGenresMyBatis implements Serializable {
     @Inject
     private BookMapper bookMapper;
 
 
     @Inject
     private GenreMapper genreMapper;
+
+    @Inject
+    private GenreGenerator genreGenerator;
+
+    private CompletableFuture<String> genreGenerationTask = null;
 
     @Getter @Setter
     private List<Genre> bookGenres;
@@ -63,7 +75,28 @@ public class BooksForGenresMyBatis {
         params.put("genres_id", genreToCreate.getId());
         genreMapper.insertBookGenre(params);
 
-        String returnUrl = "/genres?bookId=" + currentOpenedBook.getId() + "&faces-redirect=true";
-        return returnUrl;
+        return "/genres?bookId=" + currentOpenedBook.getId() + "&faces-redirect=true";
+    }
+
+    public String generateGenre() {
+        Map<String, String> requestParameters =
+                FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
+
+        genreGenerationTask = CompletableFuture.supplyAsync(() -> genreGenerator.generateGenre());
+
+        return  "/genres.xhtml?faces-redirect=true&bookId=" + requestParameters.get("bookId");
+    }
+
+    public boolean isGenreGenerationRunning() {
+        return genreGenerationTask != null && !genreGenerationTask.isDone();
+    }
+
+    public String getGenreGenerationStatus() throws ExecutionException, InterruptedException {
+        if (genreGenerationTask == null) {
+            return null;
+        } else if (isGenreGenerationRunning()) {
+            return "Genre generation in progress";
+        }
+        return "Possible genre: " + genreGenerationTask.get();
     }
 }

@@ -27,6 +27,13 @@
       </h:commandButton>
    </h:form>
 
+   <h:form>
+      <h:outputText value="#{booksForGenresMyBatis.genreGenerationStatus}" />
+      <h:commandButton value="Generate possible genre?" disabled="#{booksForGenresMyBatis.genreGenerationRunning}" action="#{booksForGenresMyBatis.generateGenre()}">
+         <f:param name="bookId" value="#{booksForGenresMyBatis.currentOpenedBook.id}" />
+      </h:commandButton>
+   </h:form>
+
    <br/>
    <h:link outcome="books?authorId=#{booksForGenresMyBatis.currentOpenedBook.authorId}" value="Back to books page"/>
 </h:body>
