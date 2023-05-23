@@ -9,4 +9,8 @@
     <interceptors>
         <class>com.example.lab1.interceptors.MethodLogger</class>
     </interceptors>
+
+    <alternatives>
+        <class>com.example.lab1.services.EnglishGenreGenerator</class>
+    </alternatives>
 </beans>

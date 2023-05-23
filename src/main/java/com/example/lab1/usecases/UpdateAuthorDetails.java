@@ -32,8 +32,6 @@ public class UpdateAuthorDetails implements Serializable {
                 FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
         Long authorId = Long.parseLong(requestParameters.get("authorId"));
         this.author = authorsDAO.findOne(authorId);
-        System.out.println("author:");
-        System.out.println(this.author);
     }
 
     @Transactional
@@ -41,9 +39,7 @@ public class UpdateAuthorDetails implements Serializable {
     public String updateEmail() {
         try{
             authorsDAO.update(this.author);
-            System.out.println("it worked.");
         } catch (OptimisticLockException e) {
-            System.out.println("Exception!!!");
             return "/authorEdit.xhtml?faces-redirect=true&authorId=" + this.author.getId() + "&error=optimistic-lock-exception";
         }
         return "books.xhtml?authorId=" + this.author.getId() + "&faces-redirect=true";
