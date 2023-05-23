@@ -38,7 +38,7 @@ public class UpdateAuthorDetails implements Serializable {
 
     @Transactional
     @LoggedInvocation
-    public String update() {
+    public String updateEmail() {
         try{
             authorsDAO.update(this.author);
             System.out.println("it worked.");

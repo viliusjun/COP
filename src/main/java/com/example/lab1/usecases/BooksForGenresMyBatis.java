@@ -1,5 +1,6 @@
 package com.example.lab1.usecases;
 
+import com.example.lab1.interceptors.LoggedInvocation;
 import com.example.lab1.mybatis.dao.BookMapper;
 import com.example.lab1.mybatis.dao.GenreMapper;
 import com.example.lab1.mybatis.model.Book;
@@ -58,6 +59,7 @@ public class BooksForGenresMyBatis implements Serializable {
     }
 
     @Transactional
+    @LoggedInvocation
     public String createGenreForBook() {
         Genre existingGenre = genreMapper.selectByName(genreToCreate.getName());
         if (existingGenre == null) {
@@ -78,6 +80,7 @@ public class BooksForGenresMyBatis implements Serializable {
         return "/genres?bookId=" + currentOpenedBook.getId() + "&faces-redirect=true";
     }
 
+    @LoggedInvocation
     public String generateGenre() {
         Map<String, String> requestParameters =
                 FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();

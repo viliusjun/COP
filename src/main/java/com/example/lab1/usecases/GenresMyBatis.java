@@ -1,5 +1,6 @@
 package com.example.lab1.usecases;
 
+import com.example.lab1.interceptors.LoggedInvocation;
 import com.example.lab1.mybatis.dao.GenreMapper;
 import com.example.lab1.mybatis.model.Genre;
 import lombok.Getter;
@@ -36,6 +37,7 @@ public class GenresMyBatis {
     }
 
     @Transactional
+    @LoggedInvocation
     public String createGenre() {
         genreMapper.insert(genreToCreate);
         return "/authors?faces-redirect=true";
