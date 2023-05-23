@@ -13,6 +13,10 @@
     <p><b>email</b>: #{booksForAuthor.author.email}</p>
     <h:button value="Edit author's email" outcome="/authorEdit?authorId=#{booksForAuthor.author.id}" >
     </h:button>
+    <br />
+    <h:button value="Send a feedback email to #{booksForAuthor.author.name}"
+              outcome="/sendEmail?authorId=#{booksForAuthor.author.id}" >
+    </h:button>
 
     <h3>Books written by #{booksForAuthor.author.name}:</h3>
     <ol>
