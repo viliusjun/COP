@@ -2,8 +2,8 @@ package com.example.lab1.usecases;
 
 
 import com.example.lab1.interceptors.LoggedInvocation;
-import com.example.lab1.mybatis.dao.AuthorMapper;
 import com.example.lab1.mybatis.model.Author;
+import com.example.lab1.services.AuthorService;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -16,7 +16,7 @@ import java.util.List;
 @Model
 public class AuthorsMyBatis {
     @Inject
-    private AuthorMapper authorMapper;
+    private AuthorService authorService;
 
     @Getter
     private List<Author> allAuthors;
@@ -30,13 +30,12 @@ public class AuthorsMyBatis {
     }
 
     private void loadAllAuthors() {
-        this.allAuthors = authorMapper.selectAll();
+        this.allAuthors = authorService.selectAllAuthors();
     }
 
     @Transactional
     @LoggedInvocation
     public String createAuthor() {
-        authorMapper.insert(authorToCreate);
-        return "/authors?faces-redirect=true";
+        return authorService.createAuthor(authorToCreate);
     }
 }

@@ -13,4 +13,8 @@
     <alternatives>
         <class>com.example.lab1.services.EnglishGenreGenerator</class>
     </alternatives>
+
+    <decorators>
+        <class>com.example.lab1.services.EmailValidationAuthorServiceDecorator</class>
+    </decorators>
 </beans>
